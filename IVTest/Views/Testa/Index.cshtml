@@ -1,0 +1,43 @@
+﻿@using IVTest.Models
+@using Microsoft.AspNetCore.Mvc.Rendering
+@model FinalMdl
+
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #secondDropdown {
+            display: none;
+        }
+    </style>
+    <script>
+        function showSecondDropdown() {
+            var firstDropdown = document.getElementById("Class");
+            var secondDropdown = document.getElementById("secondDropdown");
+
+            if (firstDropdown.value === "") {
+                secondDropdown.style.display = "none";
+            } else {
+                secondDropdown.style.display = "block";
+            }
+        }
+    </script>
+</head>
+<body>
+    <h2>Data Selection</h2>
+
+    <div class="form-group">
+        <label asp-for="Class" class="form-label">Select Class:</label>
+        <select asp-for="Class" asp-items="ViewBag.UserData" class="form-select" onchange="showSecondDropdown()" id="Class">
+            <option value="">Select Class</option>
+        </select>
+    </div>
+
+    <div class="form-group" id="secondDropdown">
+        <label asp-for="Subject" class="form-label">Select Subject:</label>
+        <select asp-for="Subject" asp-items="ViewBag.SecondTableData" class="form-control">
+            <option value="">Select Item</option>
+        </select>
+    </div>
+</body>
+</html>
